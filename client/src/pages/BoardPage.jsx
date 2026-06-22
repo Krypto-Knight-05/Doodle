@@ -7,7 +7,7 @@ import CanvasBoard from "../components/CanvasBoard";
 import Toolbar from "../components/Toolbar";
 import PropertiesPanel from "../components/PropertiesPanel";
 
-const SOCKET_URL = "http://localhost:4444";
+const SOCKET_URL = import.meta.env.VITE_API_URL || "http://localhost:4444";
 
 const DEFAULT_PROPERTIES = {
   strokeColor: "#000000",
