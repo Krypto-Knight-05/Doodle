@@ -1,6 +1,6 @@
 # 🎨 Doodle 
 
-![Doodle Preview](./client/public/favicon.svg)
+<img src="./client/public/favicon.svg" width="100" alt="Doodle Logo" />
 
 Doodle is a full-stack, real-time drawing canvas application built with the MERN stack and Socket.IO. It provides a smooth, feature-rich sketching experience with automatic cloud saving and user authentication.
 
