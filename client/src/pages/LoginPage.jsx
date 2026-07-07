@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../api/axios";
-
-// const GOOGLE_CLIENT_ID_PLACEHOLDER = "YOUR_GOOGLE_CLIENT_ID_HERE";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +10,17 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  // Handle error codes from Google OAuth redirect
+  useEffect(() => {
+    const errorParam = searchParams.get("error");
+    if (errorParam === "google_auth_failed") {
+      setError("Google sign-in failed. Please try again or use email and password.");
+    } else if (errorParam === "no_token") {
+      setError("Authentication error. No token received from Google. Please try again.");
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
