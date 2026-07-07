@@ -415,7 +415,7 @@ const CanvasBoard = ({
         return { ...el, width: w, height: h };
       })
     );
-  }, [tool, elements]);
+  }, [tool]);
 
   // ── Mouse Up ───────────────────────────────────────────────────────────────
   const handleMouseUp = useCallback(() => {
@@ -427,8 +427,8 @@ const CanvasBoard = ({
         // Remove tiny/empty elements
         const filtered = prev.filter((el) => {
           if (el.type === "pen") return el.points.length > 1;
-          if (["rectangle","ellipse","triangle"].includes(el.type)) return Math.abs(el.width) > 2 || Math.abs(el.height) > 2;
-          if (["line","arrow"].includes(el.type)) return Math.hypot(el.x2-el.x1, el.y2-el.y1) > 2;
+          if (["rectangle", "ellipse", "triangle"].includes(el.type)) return Math.abs(el.width) > 2 || Math.abs(el.height) > 2;
+          if (["line", "arrow"].includes(el.type)) return Math.hypot(el.x2 - el.x1, el.y2 - el.y1) > 2;
           return true;
         });
         pushHistory(filtered);
